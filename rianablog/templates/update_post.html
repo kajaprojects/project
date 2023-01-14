@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  
+{% if user.is_authenticated %} 
+	{% if user.id == post.author.id %}
+		<h1>Edit post</h1>
+		<br/>
+		<br/>
+		<div class="mb-3">
+			<form method="POST">
+				{% csrf_token %}
+				{{ form.as_p }}
+				{{ form.media }}
+				<button class="btn btn-dark">Update</button>
+		</div>
+	{% endif %}
+{% else %}
+Sorry, this is only for logged users!
+
+{% endif %}
+
+{% endblock%}

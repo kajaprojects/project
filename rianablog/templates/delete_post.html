@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  
+{% if user.is_authenticated %}
+	{% if user.id == post.author.id %}  
+		<h1>Delete post</h1>
+		<br/>
+		<br/>
+		<h3>Delete: {{ post.title }}</h3>
+		<div class="mb-3">
+			<form method="POST">
+				{% csrf_token %}
+				<button class="btn btn-dark">Delete</button>
+		</div>
+	{% endif %}
+
+{% else %}
+Sorry, this is only for logged users!
+
+{% endif %}
+
+{% endblock%}

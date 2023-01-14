@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+ 
+{% if user.is_authenticated %}  
+	<h1>Add post</h1>
+	<br/>
+	<br/>
+	<div class="mb-3">
+		<form method="POST">
+			{% csrf_token %}
+			{{ form.as_p }}
+			{{ form.media }}
+			<button class="btn btn-dark">Post</button>
+	</div>
+
+	<script>
+		var name = "{{ user.id }}";
+		
+		document.getElementById("elder").value = name;
+
+	</script>
+
+{% else %}
+Sorry, this is only for logged users!
+
+{% endif %}
+
+
+{% endblock%}
