@@ -2,27 +2,33 @@
 
 
 {% block content %}
-<h1>Post<h1>
-
+<h1>Forum<h1>
+	<br/>
+	<br/>
     
 
 
-<ul>
+<ul style="list-style-type:none;">
 {% for post in object_list%}
-	<li><a href="{% url 'blog-detail' post.pk %}">{{post.title}}</a>
-	 - {{post.author.first_name}}
-		{{post.author.last_name}} - {{post.post_date}}
+	<li class="border border-secondary"> <a href="{% url 'blog-detail' post.pk %}">{{post.title}}</a><p class="fs-6">
+		{{post.author.first_name}}
+		{{post.author.last_name}} - {{post.post_date}}</p>
 
 		{% if user.is_authenticated %}
 			{% if user.id == post.author.id %}
-				<small><a href="{% url 'update_post' post.pk %}">Edit</a></small><br/>
-				<small><a href="{% url 'delete_post' post.pk %}">Delete</a></small><br/>
+				<a href="{% url 'update_post' post.pk %}" class="fs-6">Edit</a>
+				<a href="{% url 'delete_post' post.pk %}" class="fs-6">Delete</a>
+				<br/>
 			{% endif %}
 		{%endif%}
+	
+	<p class="fs-3">{{post.body|safe }}</p></li>
+	<br/>
+	<br/>
 
-	{{post.body|safe }}</li>
 {% endfor%}
 
 </ul>
 
 {% endblock%}
+
