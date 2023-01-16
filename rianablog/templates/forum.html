@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1>Forum<h1>
+
+<a class="nav-link" href="{% url 'add_post' %}">Add post</a>
+
+	<br/>
+	<br/>
+    
+
+
+<ul style="list-style-type:none;">
+{% for post in object_list%}
+	<li class="border border-secondary"> <a href="{% url 'blog-detail' post.pk %}">{{post.title}}</a><p class="fs-6">
+		{{post.author.first_name}}
+		{{post.author.last_name}} 
+		- {{post.post_date}}</p>
+
+		{% if user.is_authenticated %}
+			{% if user.id == post.author.id %}
+				<a href="{% url 'update_post' post.pk %}" class="fs-6">Edit</a>
+				<a href="{% url 'delete_post' post.pk %}" class="fs-6">Delete</a>
+				<br/>
+			{% endif %}
+		{%endif%}
+	
+	<p class="fs-3">{{post.body|safe }}</p></li>
+	<br/>
+	<br/>
+
+{% endfor%}
+
+</ul>
+
+{% endblock%}
+

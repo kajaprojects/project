@@ -25,3 +25,8 @@ class Comment(models.Model):
 
 	def __str__(self):
 		return '%s - %s' % (self.post.title, self.name)
+
+class Image(models.Model):
+    title = models.CharField(max_length=20)
+    photo = models.ImageField(upload_to='pics')
+

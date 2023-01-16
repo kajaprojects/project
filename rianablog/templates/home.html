@@ -1,34 +1,81 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
-<h1>Forum<h1>
+<h1>RIANA d.o.o. - proizvodnja, servis in storitve<h1>
+<h5>RIANA d.o.o. je računalniško podjetje s poudarkom na proizvodnji programskih produktov.
+
+</h3>
 	<br/>
 	<br/>
     
 
+<img src="{% static "dragon.jpg" %}"/>
 
-<ul style="list-style-type:none;">
-{% for post in object_list%}
-	<li class="border border-secondary"> <a href="{% url 'blog-detail' post.pk %}">{{post.title}}</a><p class="fs-6">
-		{{post.author.first_name}}
-		{{post.author.last_name}} - {{post.post_date}}</p>
 
-		{% if user.is_authenticated %}
-			{% if user.id == post.author.id %}
-				<a href="{% url 'update_post' post.pk %}" class="fs-6">Edit</a>
-				<a href="{% url 'delete_post' post.pk %}" class="fs-6">Delete</a>
-				<br/>
-			{% endif %}
-		{%endif%}
-	
-	<p class="fs-3">{{post.body|safe }}</p></li>
-	<br/>
-	<br/>
-
-{% endfor%}
 
 </ul>
+<!-- Flexbox for demo purpose -->
+<div class="d-flex">
+
+  <!-- Element on the left -->
+  <div class="px-4">
+    <p>Text</p>
+  </div>
+
+  <!-- Vertical divider -->
+  <div class="vr" style="height: 250px;"></div>
+
+  <!-- Element on the left -->
+  <div class="overflow-y-auto">
+<div class="fs-1"><p class="fw-bolder">Programi za računovodstvo in finance</p></div>
+ 
+<p>Programi so napisani v programskem jeziku Java, GUI uporablja knjižnice Swing, delo z bazami pa je urejeno preko JDBC gonilnikov. Ker so napisani v Javi, lahko delujejo v vseh operacijskih sistemih, ki podpirajo JRE 1.4 ali več (WIN98, WIN2000, XP, Linux, System X-Mac, Solaris, itd.). </p>
+<p>
+-program ODJ (plače)</p>
+
+<p>-program BLJ (blagajniško poslovanje)</p>
+
+<p>-program OSJ (knjigovodsko spremljanje in vodenje evidenc osnovnih sredstev)</p>
+
+<p>-progam PPJ (kreiranje in tiskanje plačilnih nalogov)</p>
+
+<p>-program Učenci (vodenje stroškov učencev, izpis posebnih položnic (ali prenos plačil na banke) in spremljanje le-teh)</p>
+</p>
+
+<p class="fw-bolder">
+Programske rešitve, ki so napisane v programskem jeziku TURBO PASCAL delujejo v DOS okolju (MSDOS, OS/2, WIN98, WIN2000, XP):
+</p>
+
+
+<p>-program GKN (spremljanje osnovnih knjigovodskih dokumentov)</p>
+
+<p>-program DDV (vodenje prejetih in izdanih računov)</p>
+
+<p>-program SKN (vodenje saldokontov kupcev in dobaviteljev)</p>
+
+<p>-program SPN (vodenje zalog in materialno poslovanje ter fakturiranje)</p>
+
+<p>-program FKN (fakturiranje)</p></div>
+  <div class="px-4">
+    <p>Text</p>
+  </div>
+
+</div>
+
+{% for x in data %}
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <a href="{{ x.photo.url }}">
+              <img src="{{ x.photo.url }}" alt="Lights" style="width:100%">
+              <div class="caption">
+                <p>{{ x.title }}</p>
+              </div>
+            </a>
+          </div>
+        </div>
+{% endfor %}
+
 
 {% endblock%}
 

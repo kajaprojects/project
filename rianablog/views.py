@@ -11,6 +11,10 @@ from django.urls import reverse_lazy
 class HomeView(ListView):
 	model = Post
 	template_name = 'home.html'
+	
+class ForumView(ListView):
+	model = Post
+	template_name = 'forum.html'
 	ordering = ['-post_date']
 
 class BlogDetailView(DetailView):
@@ -44,3 +48,4 @@ class AddCommentView(CreateView):
 		return super().form_valid(form)
 
 	success_url = reverse_lazy('home')
+
